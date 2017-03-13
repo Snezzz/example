@@ -1,0 +1,51 @@
+public static void step1(){
+	int j=0,sos,d=0,k1;
+	double[][] U=A,L;
+	 int [] [] P=new int[3][3];
+	int n=A.length;
+	P[0][0]=1;
+	P[0][1]=0;
+	P[0][2]=0;
+	P[1][0]=0;
+	P[1][1]=1;
+	P[1][2]=0;
+	P[2][0]=0;
+	P[2][1]=0;
+	P[2][2]=1;
+	//каждый столбец
+	for(j=0;j<n-1;j++){
+		
+		for(int i=j+1;i<n;i++){
+		
+	//метод поиска max элемента
+		if(Math.abs(U[j][j])<Math.abs(U[i][j])){
+			System.out.println("sss"+U[j][j]+U[i][j]);
+			swapRow(U,i,j);
+			System.out.println("замена"+U[j][j]+U[i][j]);
+	//P-единичная матрица
+		sos=P[i][j];
+		P[i][j]=P[j][j];
+		P[j][j]=sos;
+		//}	
+		
+		}
+		}
+
+		for(int l=j+1;l<n;l++){
+		for(int k=l;k<n;k++){
+					  U[k][l] =U[k][l]/ U[j][j];
+					  System.out.println("деление:"+" "+k+" "+l+" "+" "+j+" "+U[k][l]);
+				   for (int i = l; i< n; ++i){		  
+				      U[l][i] -= U[l][k] * U[k][i];
+				      System.out.println(" "+i+"вычитание:"+U[l][i]);
+			      }
+		}
+	}		
+	}
+	for(int i=0;i<3;i++){
+		for(j=0;j<3;j++){
+		System.out.println(i+" "+j+" "+"элемент="+U[i][j]);		}
+	}
+
+}
+}
